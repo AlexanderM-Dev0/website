@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homelab | Alexander Mortillite</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fafafa;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: white;
+    }
+
+    /* Page layout */
+    .homelab {
+      padding: 8rem 2rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .homelab-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 4rem;
+    }
+
+    .homelab-header .text {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .homelab-header h1 {
+      font-size: 2.5rem;
+      color: #111;
+      margin-bottom: 1rem;
+    }
+
+    .homelab-header p {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .server-picture {
+      width: 100%;
+      height: 300px;
+      background: url("images/server-picture.jpg") center/cover no-repeat;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Project grid */
+    .homelab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .lab-card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      text-align: center;
+    }
+
+    .lab-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .lab-card h3 {
+      color: #111;
+      margin-bottom: 0.75rem;
+      font-size: 1.2rem;
+    }
+
+    .lab-card p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .homelab-header {
+        grid-template-columns: 1fr;
+      }
+      .server-picture {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="programming.html">Programming Projects</a></li>
+        <li><a href="homelab.html" class="active">Homelab Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Homelab content -->
+  <section class="homelab">
+    <div class="homelab-header">
+      <div class="text">
+        <h1>My Home Lab</h1>
+        <p>
+          My home lab is where I experiment with networking, virtualization, and system management.
+          It’s powered by multiple servers running Proxmox, TrueNAS, and Docker containers.
+        </p>
+        <p>
+          The goal is to simulate enterprise-grade infrastructure at home—automating tasks, 
+          optimizing network performance, and testing self-hosted services.
+        </p>
+        <p>
+          Below are some of my favorite setups and configurations.
+        </p>
+      </div>
+
+      <div class="server-picture"></div>
+    </div>
+
+    <!-- Homelab project grid -->
+    <div class="homelab-grid">
+      <div class="lab-card">
+        <h3>Proxmox Hypervisor</h3>
+        <p>
+            Runs several virtual machines and LXC containers for things like web servers, 
+            coding projects, and network testing. Helps keep everything organized and easy 
+            to manage in the homelab setup.
+        </p>
+      </div>
+
+      <div class="lab-card">
+        <h3>TrueNAS Storage</h3>
+        <p>
+          Configured with ZFS for redundancy and performance, hosting NFS and SMB shares for local backups and media storage.
+        </p>
+      </div>
+
+      <div class="lab-card">
+        <h3>Docker Services</h3>
+        <p>
+          Hosting web apps, monitoring tools, and development environments with Docker Compose, ensuring modularity and ease of deployment.
+        </p>
+      </div>
+
+      <div class="lab-card">
+        <h3>Network Setup</h3>
+        <p>
+          Managed VLANs, 2.5GbE links, and a central router to segment "lab environments" securely while maintaining fast interconnect speeds.
+        </p>
+      </div>
+
+      <div class="lab-card">
+        <h3>Operating System Testing</h3>
+        <p>
+          Used for trying out and learning different operating systems like Linux,
+          Windows Server, and other distributions.
+        </p>
+      </div>
+    
+      <div class="lab-card">
+        <h3>Game Hosting</h3>
+        <p>
+          Dedicated servers for hosting multiplayer games, such as Minecraft and Arma 3, allowing friends to connect remotely.
+        </p>
+      </div>
+
+    <div class="lab-card">
+        <h3>DNS Management</h3>
+        <p>
+          Utilizes Pi-hole for ad-blocking and DNS management, ensuring a faster and more secure browsing experience across the network.
+        </p>
+      </div>
+
+      <div class="lab-card">
+        <h3>Monitoring</h3>
+        <p>
+          Integrated Prometheus and Grafana dashboards to track system metrics, disk performance, and container uptime in real-time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2025 Alexander Mortillite</footer>
+</body>
+</html>

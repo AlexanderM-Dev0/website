@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programming Projects | Your Portfolio</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }   
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fafafa;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: white;
+    }
+
+    .projects {
+    padding: 5rem 2rem;
+    text-align: center;
+    background-color: #fafafa;
+  }
+
+  .projects h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #111;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .project-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .project-content {
+    padding: 1.5rem;
+  }
+
+  .project-content h3 {
+    margin-bottom: 0.75rem;
+    color: #000;
+    font-size: 1.2rem;
+  }
+
+  .project-content p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .project-content a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .project-content a:hover {
+    color: #0056b3;
+  }
+
+
+
+</style>
+</head>
+
+<!-- Navbar -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="programming.html" class="active">Programming Projects</a></li>
+        <li><a href="homelab.html">Homelab Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <body>
+
+
+<section id="projects" class="projects">
+  <h2>Projects</h2>
+    <div class="projects-grid">
+        <div class="project-card">
+          <img src="images/barnes-hut.gif" alt="Barnes-Hut Simulation" />
+          <div class="project-content">
+            <h3>Barnes-Hut Gravitational Simulation</h3>
+            <p>
+              A high-performance N-body simulation written in Python and C++,
+              visualizing gravitational interactions between thousands of particles
+              using a dynamic Barnes–Hut quadtree algorithm.
+            </p>
+            <a href="https://github.com/AlexanderM-Dev0/Barnes-Hut-CPP" target="_blank">View on GitHub →</a>
+          </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/quadtree.gif" alt="Quadtree-Division-System" />
+      <div class="project-content">
+        <h3>Quadtree Division System</h3>
+        <p>
+          A dynamic spatial partitioning engine built in Python, designed to
+          efficiently divide and manage 2D space for simulations and rendering. 
+          Features recursive subdivision visualization and performance metrics for 
+          real-time optimization and debugging.
+        </p>
+        <a href="https://github.com/AlexanderM-Dev0/Quadtree-Division-System" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/laser-simulation.gif" alt="Laser Simulation" />
+      <div class="project-content">
+        <h3>Laser Simulation</h3>
+        <p>
+           A physics-based laser reflection simulator built with C++ and Raylib,
+      featuring accurate collision detection, reflective surfaces, and dynamic
+      beam interactions. Designed to visualize optics principles through
+      interactive ray behavior and real-time rendering.
+        </p>
+        <a href="https://github.com/AlexanderM-Dev0/Laser-Simulation" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/dolus.jpg" alt="Dolus" />
+      <div class="project-content">
+        <h3>Dolus</h3>
+        <p>
+           A teambased college project designed around audio encryption and secure obfuscation through commercial platforms
+        </p>
+        <a href="https://github.com/AlexanderM-Dev0/Dolus" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/libgdx-chess.jpg" alt="LibGDX Chess" />
+      <div class="project-content">
+        <h3>LibGDX Chess</h3>
+        <p>
+           A basic chess game built using the LibGDX framework in Java, which includes a gamestate manager using notation similar to FEN for saving and loading games.
+        </p>
+        <a href="https://github.com/AlexanderM-Dev0/LibGDX-Chess" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/Game-of-War.jpg" alt="Game of War" />
+      <div class="project-content">
+        <h3>Game of War</h3>
+        <p>
+           A java based simulation of the classic card game "War", with the intention of bruteforcing and analyzing probabilities over thousands of simulated games in a Monte Carlo fashion.
+        </p>
+        <a href="https://github.com/AlexanderM-Dev0/Game-of-War" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/salted_Graph.jpg" alt="Salted Graph" />
+      <div class="project-content">
+        <h3>Probability and Applied Statistics</h3>
+        <p>
+           A java project focused on the implementation of statistical functions and the visualizations of data through tools like JFreeChart. This was the final project for a college level Probability and Applied Statistics course. 
+        </p>
+        <a href="https://github.com/AlexanderM-Dev0/Statistics-Library-2/tree/master" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/salted_Graph.jpg" alt="Salted Graph" />
+      <div class="Canvas-Test">
+        <h3>Canvas Test</h3>
+        <p>
+            A Javascript canvas test for learning Webgl2, shaders, and GPU programming through a web interface.
+        </p>
+        <a href="https://github.com/AlexanderM-Dev0/canvasTest" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/salted_Graph.jpg" alt="Salted Graph" />
+      <div class="Canvas-Test">
+        <h3>My Personal Website/Portfolio</h3>
+        <p>
+            A carefully created personal website and portfolio to showcase my projects, skills, and experience as a developer, which you are currently viewing!
+        </p>
+        <a href="https://github.com/AlexanderM-Dev0/canvasTest" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/Advanced-Space.gif" alt="Salted Graph" />
+      <div class="Canvas-Test">
+        <h3>Advanced Solar Simulation</h3>
+        <p>
+            A carefully created personal website and portfolio to showcase my projects, skills, and experience as a developer, which you are currently viewing!
+        </p>
+        <a href="https://github.com/AlexanderM-Dev0/canvasTest" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+    </body>
+
+
+

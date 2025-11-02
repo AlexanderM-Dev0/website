@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Your Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fafafa;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    footer {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: white;
+    }
+
+    /* Hero Section */
+    .home {
+      position: relative;
+      height: 70vh;
+      background: black;
+      overflow: hidden;
+      margin-top: 50px;
+    }
+
+    #heroCanvas {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-overlay h1 {
+      color: white;
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    .hero-overlay h2 {
+      color: white;
+      font-size: 2rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    /* Favorite Projects */
+    .favorites {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .favorites h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #111;
+    }
+
+    .project-scroll {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      padding: 1rem;
+      scroll-snap-type: x mandatory;
+    }
+
+    .project-card {
+      min-width: 280px;
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+      scroll-snap-align: start;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 5px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .placeholder {
+      color: #666;
+      text-align: center;
+      font-style: italic;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    .favorites-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      align-items: start;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+  .demo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+  }
+
+#demo-canvas {
+  width: 100%;
+  height: 300px;
+  background-color: #000000;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  image-rendering: crisp-edges;
+}
+
+.project-scroll.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+  max-height: 70vh;
+  padding-right: 0.5rem;
+}
+
+@media (max-width: 900px) 
+{
+  .favorites-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-scroll.vertical {
+    max-height: unset;
+  }
+
+  #demo-canvas {
+    height: 50vh;
+  }
+}
+
+.experience, .certifications {
+  padding: 5rem 2rem;
+  background-color: #fafafa;
+  text-align: center;
+}
+
+.experience h2, .certifications h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #111;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.experience-grid, .cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: stretch; /* makes all cards the same height */
+
+}
+
+/* Cards share the same structure */
+.exp-card, .cert-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.75rem;
+  text-align: left;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  flex-direction: column;
+  justify-content: space-between; /* ensures text fills evenly */
+  height: 100%; /* forces equal height across rows */
+}
+
+.exp-card:hover, .cert-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.exp-card h3, .cert-card h3 {
+  font-size: 1.2rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.exp-card p, .cert-card p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.exp-date {
+  font-size: 0.9rem;
+  color: #007bff;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+/* === Social Links === */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.social-icon {
+  background: white;
+  color: #111;
+  padding: 0.6rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-4px);
+  background: #007bff;
+  color: white;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+
+
+@media (max-width: 768px) {
+  .experience h2, .certifications h2 {
+    font-size: 1.75rem;
+  }
+}
+/* Center lone card if odd number */
+@media (min-width: 900px) {
+  .cert-grid > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 50%;
+  }
+}
+
+  </style>
+</head>
+
+
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="programming.html">Programming Projects</a></li>
+        <li><a href="homelab.html">Homelab Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="home">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-overlay">
+      <h1>Alexander Mortillite</h1>
+    </div>
+    <div class="hero-overlay" style="top: 20%">
+      <h2>Software Developer & Tech Enthusiast</h2>
+    </div>
+  </section>
+
+<section class="favorites">
+  <h2>Favorite Projects</h2>
+  <div class="favorites-grid">
+    <!-- Left side: demo canvas -->
+    
+
+    <!-- Right side: project cards -->
+    <div class="project-scroll vertical">
+      <div class="project-card placeholder">Barnes-Hut Simulation</div>
+      <div class="project-card placeholder">Laser Simulation</div>
+      <div class="project-card placeholder">Quadtree Division System</div>
+    </div>
+    <div class="demo-container">
+      <canvas id="demo-canvas"></canvas>
+    </div>
+  </div>
+  </section>
+<!-- Work Experience -->
+<section class="experience">
+  <h2>Work Experience</h2>
+  <div class="experience-grid">
+  
+    <div class="exp-card">
+        <h3>Computer Science Gateways/Pathways Internship – Federal Aviation Administration (FAA)</h3>
+        <p class="exp-date">Jan 2025</p>
+        <p>
+          I gained hands-on experience in full-stack development within a professional environment, utilizing Microsoft PowerApps, SharePoint, and Power Automate to 
+          integrate databases and automate workflows. Stylized automated PDFs were produced using HTML and CSS, while Database Report Generations (DRGs) were optimized 
+          through SharePoint Lists and Power Automate. These efforts improved data accessibility, reduced manual workloads, and strengthened cross-functional communication 
+          across the organization.
+        </p>
+      </div>
+
+
+    <div class="exp-card">
+      <h3>Computer Science Gateways/Pathways Internship – Federal Aviation Administration (FAA)</h3>
+      <p class="exp-date">Jun 2024 – Aug 2024</p>
+       <p>
+        During my internship, I developed applications and automations that streamlined executive information exchange and enhanced organizational efficiency. 
+        Meetings were led with stakeholders to define feature expectations, provide real-time updates, and maintain project alignment. Clear, evergreen documentation 
+        was created and maintained to support ongoing development and scalability. 
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+
+  
+  
+
+
+
+ <!-- Certifications -->
+  <section class="certifications">
+  <h2>Certifications</h2>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <h3>MTA: Networking Fundamentals</h3>
+      <p> 
+        Gained foundational knowledge of network infrastructures, protocols, and topologies.
+        Demonstrated understanding of IP addressing, subnetting, and common networking devices 
+        used in enterprise environments.
+      </p>
+    </div>
+
+    <div class="cert-card">
+      <h3>MTA: Windows Operating System Fundamentals</h3>
+      <p>Acquired core skills in Windows OS configuration, maintenance, and troubleshooting. 
+        Learned user and file management, system security, and how to maintain reliable 
+        desktop environments in a professional setting.</p>
+    </div>
+
+    <div class="cert-card">
+      <h3>IC3 Digital Literacy Certification</h3>
+      <p>
+        Validated comprehensive understanding of essential computer concepts, digital 
+        communication, and productivity tools. Demonstrated proficiency with standard office 
+        applications, online safety, and the fundamentals of computing.
+
+      </p>
+    </div>
+  </div>
+</section>
+
+  <script src="javascript/hello-triangle.js"></script>
+  <script src="javascript/particles.js"></script>
+
+
+  <footer>
+    <!-- Social Links -->
+  <div class="social-links">
+    <a href="https://www.linkedin.com/in/alexander-mortillite-5577a0214" target="_blank" rel="noopener noreferrer" class="social-icon">
+      <svg class="icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <path d="M218.123122,218.127392 L180.191928,218.127392 L180.191928,158.724263 C180.191928,144.559023 179.939053,126.323993 160.463756,126.323993 C140.707926,126.323993 137.685284,141.757585 137.685284,157.692986 L137.685284,218.123441 L99.7540894,218.123441 L99.7540894,95.9665207 L136.168036,95.9665207 L136.168036,112.660562 L136.677736,112.660562 C144.102746,99.9650027 157.908637,92.3824528 172.605689,92.9280076 C211.050535,92.9280076 218.138927,118.216023 218.138927,151.114151 L218.123122,218.127392 Z M56.9550587,79.2685282 C44.7981969,79.2707099 34.9413443,69.4171797 34.9391618,57.260052 C34.93698,45.1029244 44.7902948,35.2458562 56.9471566,35.2436736 C69.1040185,35.2414916 78.9608713,45.0950217 78.963054,57.2521493 C78.9641017,63.090208 76.6459976,68.6895714 72.5186979,72.8184433 C68.3913982,76.9473153 62.7929898,79.26748 56.9550587,79.2685282 M75.9206558,218.127392 L37.94995,218.127392 L37.94995,95.9665207 L75.9206558,95.9665207 L75.9206558,218.127392 Z M237.033403,0.0182577091 L18.8895249,0.0182577091 C8.57959469,-0.0980923971 0.124827038,8.16056231 -0.001,18.4706066 L-0.001,237.524091 C0.120519052,247.839103 8.57460631,256.105934 18.8895249,255.9977 L237.033403,255.9977 C247.368728,256.125818 255.855922,247.859464 255.999,237.524091 L255.999,18.4548016 C255.851624,8.12438979 247.363742,-0.133792868 237.033403,0.000790807055"></path>
+        </g>
+      </svg>
+    </a>
+
+    <a href="https://github.com/AlexanderM-Dev0" target="_blank" rel="noopener noreferrer" class="social-icon">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+    </a>
+  </div>
+  © 2025 Alexander Mortillite
+</footer>
+  
+
+
+</body>
+</html>
