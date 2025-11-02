@@ -1,0 +1,360 @@
+/* === Global Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fafafa;
+  color: #222;
+  overflow-x: hidden;
+}
+
+/* === Header / Navbar === */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: white;
+}
+
+/* === Hero Section === */
+.home {
+  position: relative;
+  height: 70vh;
+  background: black;
+  overflow: hidden;
+  margin-top: 50px;
+}
+
+#heroCanvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay h1 {
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.hero-overlay h2 {
+  color: white;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* === Favorite Projects === */
+.favorites {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.favorites h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #111;
+}
+
+.project-scroll {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 1rem;
+  scroll-snap-type: x mandatory;
+}
+
+.project-scroll.vertical {
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 70vh;
+  padding-right: 0.5rem;
+}
+
+.placeholder {
+  color: #666;
+  text-align: center;
+  font-style: italic;
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: start;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.demo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+}
+
+#demo-canvas {
+  width: 100%;
+  height: 300px;
+  background-color: #000;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  image-rendering: crisp-edges;
+}
+
+/* === Experience & Certifications === */
+.experience, .certifications {
+  padding: 5rem 2rem;
+  background-color: #fafafa;
+  text-align: center;
+}
+
+.experience h2, .certifications h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #111;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.experience-grid, .cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+.exp-card, .cert-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.75rem;
+  text-align: left;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  height: 100%;
+}
+
+.exp-card:hover, .cert-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.exp-card h3, .cert-card h3 {
+  font-size: 1.2rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.exp-card p, .cert-card p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.exp-date {
+  font-size: 0.9rem;
+  color: #007bff;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+/* === Homelab Section === */
+.homelab {
+  padding: 8rem 2rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.homelab-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 4rem;
+}
+
+.homelab-header .text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.homelab-header h1 {
+  font-size: 2.5rem;
+  color: #111;
+  margin-bottom: 1rem;
+}
+
+.homelab-header p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.server-picture {
+  width: 100%;
+  height: 500px;
+  background: url("images/server-picture.jpg") center/cover no-repeat;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.homelab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.lab-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-align: center;
+}
+
+.lab-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.lab-card h3 {
+  color: #111;
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.lab-card p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* === Footer === */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.9rem;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+/* === Social Links === */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.social-icon {
+  background: white;
+  color: #111;
+  padding: 0.6rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-4px);
+  background: #007bff;
+  color: white;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+/* === Responsive === */
+@media (max-width: 900px) {
+  .favorites-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-scroll.vertical {
+    max-height: unset;
+  }
+
+  #demo-canvas {
+    height: 50vh;
+  }
+
+  .homelab-header {
+    grid-template-columns: 1fr;
+  }
+
+  .server-picture {
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .experience h2, .certifications h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .cert-grid > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 50%;
+  }
+}
