@@ -429,7 +429,7 @@ footer {
   font-weight: 700;
   letter-spacing: 0.5px;
   text-align: center;
-
+  background-color: white;
   
 }
 
@@ -446,7 +446,7 @@ footer {
   min-width: 100%;
   min-height: 100%;
   flex-shrink: 0;
-  background: white;
+  
   text-align: center;
   border-radius: 5%;
   
@@ -467,7 +467,7 @@ footer {
   font-size: 0.95rem;
   line-height: 1.5;
   padding: 0rem;
-  background-color: white;
+ 
   display: flex;
   align-items: center;
   justify-content: center;
